@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Delete Student</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f4f6f9;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            width: 500px;
+            max-width: 90%;
+
+            background: white;
+
+            padding: 35px;
+
+            border-radius: 12px;
+
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+
+            text-align: center;
+        }
+
+        .icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            color: #dc3545;
+            margin-bottom: 12px;
+        }
+
+        .message {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .student-info {
+            background: #f8f9fa;
+
+            padding: 18px;
+
+            border-radius: 8px;
+
+            margin-bottom: 25px;
+
+            text-align: left;
+        }
+
+        .student-info p {
+            margin-bottom: 8px;
+        }
+
+        .student-info p:last-child {
+            margin-bottom: 0;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .delete-btn {
+            border: none;
+
+            background: #dc3545;
+
+            color: white;
+
+            padding: 12px 22px;
+
+            border-radius: 7px;
+
+            font-size: 15px;
+
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            background: #b02a37;
+        }
+
+        .cancel-btn {
+            background: #6c757d;
+
+            color: white;
+
+            padding: 12px 22px;
+
+            border-radius: 7px;
+
+            text-decoration: none;
+        }
+
+        .cancel-btn:hover {
+            background: #545b62;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="card">
+
+        <div class="icon">
+            ⚠️
+        </div>
+
+        <h1>
+            Delete Student?
+        </h1>
+
+        <p class="message">
+            Are you sure you want to permanently delete this student?
+        </p>
+
+
+        <div class="student-info">
+
+            <p>
+                <strong>Student ID:</strong>
+                {{ student['id_number'] }}
+            </p>
+
+            <p>
+                <strong>Name:</strong>
+                {{ student['name'] }}
+            </p>
+
+            <p>
+                <strong>Class:</strong>
+                {{ student['class'] }}
+            </p>
+
+            <p>
+                <strong>Email:</strong>
+                {{ student['email'] }}
+            </p>
+
+        </div>
+
+
+        <form method="POST">
+
+            <div class="buttons">
+
+                <a
+                    href="/students"
+                    class="cancel-btn"
+                >
+                    Cancel
+                </a>
+
+
+                <button
+                    type="submit"
+                    class="delete-btn"
+                >
+                    🗑️ Yes, Delete
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

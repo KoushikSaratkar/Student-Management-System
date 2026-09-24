@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Card</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f4f6f9;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 30px;
+        }
+
+        .page {
+            text-align: center;
+        }
+
+        .student-card {
+
+            width: 420px;
+            min-height: 250px;
+
+            background: white;
+
+            border-radius: 15px;
+
+            overflow: hidden;
+
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+
+            margin-bottom: 25px;
+        }
+
+        .card-header {
+
+            background: #007bff;
+
+            color: white;
+
+            padding: 20px;
+        }
+
+        .card-header h2 {
+            margin-bottom: 5px;
+        }
+
+        .card-header p {
+            font-size: 14px;
+        }
+
+        .card-body {
+
+            padding: 25px;
+
+            text-align: left;
+        }
+
+        .student-name {
+
+            text-align: center;
+
+            font-size: 24px;
+
+            font-weight: bold;
+
+            margin-bottom: 20px;
+
+            color: #222;
+        }
+
+        .info {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 15px;
+        }
+
+        .info-box {
+
+            background: #f8f9fa;
+
+            padding: 12px;
+
+            border-radius: 7px;
+        }
+
+        .info-box strong {
+
+            display: block;
+
+            color: #777;
+
+            font-size: 12px;
+
+            margin-bottom: 4px;
+        }
+
+        .info-box span {
+
+            color: #222;
+
+            font-size: 15px;
+        }
+
+        .card-footer {
+
+            background: #f8f9fa;
+
+            padding: 12px;
+
+            text-align: center;
+
+            color: #666;
+
+            font-size: 12px;
+        }
+
+        .buttons {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 10px;
+        }
+
+        .btn {
+
+            border: none;
+
+            padding: 11px 20px;
+
+            border-radius: 7px;
+
+            text-decoration: none;
+
+            cursor: pointer;
+
+            font-size: 15px;
+        }
+
+        .print-btn {
+
+            background: #007bff;
+
+            color: white;
+        }
+
+        .back-btn {
+
+            background: #6c757d;
+
+            color: white;
+        }
+
+        @media print {
+
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .buttons {
+                display: none;
+            }
+
+            .student-card {
+                box-shadow: none;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="page">
+
+        <div class="student-card">
+
+            <div class="card-header">
+
+                <h2>
+                    Student Management System
+                </h2>
+
+                <p>
+                    Student Identity Card
+                </p>
+
+            </div>
+
+
+            <div class="card-body">
+
+                <div class="student-name">
+
+                    {{ student['name'] }}
+
+                </div>
+
+
+                <div class="info">
+
+                    <div class="info-box">
+
+                        <strong>Student ID</strong>
+
+                        <span>
+                            {{ student['id_number'] }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <strong>Age</strong>
+
+                        <span>
+                            {{ student['age'] }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <strong>Gender</strong>
+
+                        <span>
+                            {{ student['gender'] }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <strong>Class</strong>
+
+                        <span>
+                            {{ student['class'] }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <strong>Phone</strong>
+
+                        <span>
+                            {{ student['phone_number'] }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <strong>Email</strong>
+
+                        <span>
+                            {{ student['email'] }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="card-footer">
+
+                This card is generated electronically.
+
+            </div>
+
+        </div>
+
+
+        <div class="buttons">
+
+            <button
+                onclick="window.print()"
+                class="btn print-btn"
+            >
+                🖨️ Print Card
+            </button>
+
+
+            <a
+                href="/dashboard"
+                class="btn back-btn"
+            >
+                ← Dashboard
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

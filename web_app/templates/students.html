@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Students</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f6f9;
+        }
+
+        .navbar {
+            height: 65px;
+            background: #007bff;
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 30px;
+        }
+
+        .navbar h2 {
+            font-size: 22px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            background: #0056b3;
+            padding: 9px 18px;
+            border-radius: 6px;
+        }
+
+        .container {
+            padding: 30px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            color: #222;
+        }
+
+        .student-count {
+            color: #666;
+        }
+
+        .table-container {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #007bff;
+            color: white;
+            padding: 14px;
+            text-align: left;
+        }
+
+        td {
+            padding: 13px;
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:hover {
+            background: #f5f8ff;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 30px;
+            color: #777;
+        }
+
+        @media (max-width: 900px) {
+
+            .container {
+                padding: 15px;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="navbar">
+
+        <h2>Student Management System</h2>
+
+        <a href="/dashboard">
+            Dashboard
+        </a>
+
+    </div>
+
+
+    <div class="container">
+
+        <div class="header">
+
+            <div>
+                <h1>All Students</h1>
+
+                <p class="student-count">
+                    Total Students: {{ students|length }}
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="table-container">
+
+            {% if students %}
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Student ID</th>
+
+                        <th>Name</th>
+
+                        <th>Age</th>
+
+                        <th>Gender</th>
+
+                        <th>Phone</th>
+
+                        <th>Class</th>
+
+                        <th>Email</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for student in students %}
+
+                    <tr>
+
+                        <td>
+                            {{ student['id_number'] }}
+                        </td>
+
+                        <td>
+                            {{ student['name'] }}
+                        </td>
+
+                        <td>
+                            {{ student['age'] }}
+                        </td>
+
+                        <td>
+                            {{ student['gender'] }}
+                        </td>
+
+                        <td>
+                            {{ student['phone_number'] }}
+                        </td>
+
+                        <td>
+                            {{ student['class'] }}
+                        </td>
+
+                        <td>
+                            {{ student['email'] }}
+                        </td>
+
+                        <td>
+
+                            <a
+                                href="{{ url_for('edit_student', student_id=student['id_number']) }}"
+                                style="
+                                    background:#007bff;
+                                    color:white;
+                                    padding:7px 12px;
+                                    border-radius:5px;
+                                    text-decoration:none;
+                                    margin-right:5px;
+                                "
+                            >
+                                ✏️ Edit
+                            </a>
+
+
+                            <a
+                                href="{{ url_for('delete_student', student_id=student['id_number']) }}"
+                                style="
+                                    background:#dc3545;
+                                    color:white;
+                                    padding:7px 12px;
+                                    border-radius:5px;
+                                    text-decoration:none;
+                                "
+                            >
+                                🗑️ Delete
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+            {% else %}
+
+            <div class="no-data">
+                No students found.
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

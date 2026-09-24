@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Search Student</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f6f9;
+        }
+
+        .navbar {
+            height: 65px;
+            background: #007bff;
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 30px;
+        }
+
+        .navbar h2 {
+            font-size: 22px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            background: #0056b3;
+            padding: 9px 18px;
+            border-radius: 6px;
+        }
+
+        .container {
+            padding: 30px;
+        }
+
+        .search-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+        }
+
+        .search-card h1 {
+            margin-bottom: 20px;
+            color: #222;
+        }
+
+        .search-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-form input {
+            flex: 1;
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 16px;
+        }
+
+        .search-form input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        .search-btn {
+            padding: 13px 25px;
+            border: none;
+            border-radius: 7px;
+            background: #007bff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .search-btn:hover {
+            background: #0056b3;
+        }
+
+        .table-container {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #007bff;
+            color: white;
+            padding: 14px;
+            text-align: left;
+        }
+
+        td {
+            padding: 13px;
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:hover {
+            background: #f5f8ff;
+        }
+
+        .result-info {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .no-result {
+            text-align: center;
+            padding: 30px;
+            color: #777;
+        }
+
+        @media (max-width: 700px) {
+
+            .search-form {
+                flex-direction: column;
+            }
+
+            .search-btn {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="navbar">
+
+        <h2>Student Management System</h2>
+
+        <a href="/dashboard">
+            Dashboard
+        </a>
+
+    </div>
+
+
+    <div class="container">
+
+        <div class="search-card">
+
+            <h1>🔍 Search Student</h1>
+
+            <form method="POST" class="search-form">
+
+                <input
+                    type="text"
+                    name="search"
+                    placeholder="Enter Student ID or Name"
+                    value="{{ search_query }}"
+                    required
+                >
+
+                <button type="submit" class="search-btn">
+                    Search
+                </button>
+
+            </form>
+
+        </div>
+
+
+        {% if search_query %}
+
+        <div class="result-info">
+
+            Search results for:
+            <strong>{{ search_query }}</strong>
+
+        </div>
+
+
+        <div class="table-container">
+
+            {% if students %}
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Student ID</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Phone</th>
+                        <th>Class</th>
+                        <th>Email</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for student in students %}
+
+                    <tr>
+
+                        <td>{{ student['id_number'] }}</td>
+
+                        <td>{{ student['name'] }}</td>
+
+                        <td>{{ student['age'] }}</td>
+
+                        <td>{{ student['gender'] }}</td>
+
+                        <td>{{ student['phone_number'] }}</td>
+
+                        <td>{{ student['class'] }}</td>
+
+                        <td>{{ student['email'] }}</td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+            {% else %}
+
+            <div class="no-result">
+
+                No student found.
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>
